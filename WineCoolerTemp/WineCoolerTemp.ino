@@ -1,10 +1,10 @@
+#include <wifi_config.h>
+
 #include <ESP8266WiFi.h>
-
 #include <PubSubClient.h>
-
 #include <OneWire.h>
-
 #include <DallasTemperature.h>
+
 
 // Pin Mapping
 // Wemos / Arduino
@@ -29,10 +29,10 @@ OneWire oneWire(ONE_WIRE_BUS);
 
 DallasTemperature sensors(&oneWire);
 
-// Update these with values suitable for your network.
-const char* ssid = "<SSID>";
-const char* password = "<PASSWORD>";
-const char* mqtt_server = "<MQTT_IP>";
+// values defines in wifi_config.h
+const char* ssid = WIFI_SSID;
+const char* password = WIFI_PASSWORD;
+const char* mqtt_server = MQTT_SERVER;
 
 WiFiClient espClient;
 PubSubClient client(espClient);
