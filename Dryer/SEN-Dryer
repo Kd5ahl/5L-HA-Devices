@@ -48,7 +48,7 @@ void setup_wifi() {
   delay(10);
   // We start by connecting to a WiFi network
   Serial.println();
-  WiFi.hostname("ENV-Dryer");
+  WiFi.hostname("SEN-Dryer");
   Serial.print("Connecting to ");
   Serial.println(ssid);
   WiFi.begin(ssid, password);
@@ -69,7 +69,7 @@ void reconnect() {
   while (!client.connected()) {
     Serial.print("Attempting MQTT connection...");
     // Attempt to connect
-    if (client.connect("WineCoolerTempSensor")) {
+    if (client.connect("ClothesDryerSensor")) {
       Serial.println("connected");
     } else {
       Serial.print("failed, rc=");
@@ -114,6 +114,7 @@ void loop()
     Serial.println(temp);
     if((temp > -67) && (temp <257))
       {
+      		  //Create JSON Formatted Data
 		  String payload="{\"DryerPowerState\":"+SwitchState+",\"DryerTemp\":"+String(temp)+"}"; 
 		  payload.toCharArray(data, (payload.length() + 1));
 		  client.publish("home/Clothes_Dryer",data);
